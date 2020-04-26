@@ -43,18 +43,30 @@
                 </div>
               </nav>
 
-            <div class="hero-body center">
-                <div class="container">
-                    <img class="image is-fullheight" src="images/background.svg" alt="banner image">
-                </div>
-            </div>
-
 		</section>
 
 		<section class="section">
             <div class="content" id="wikipage">
                 <script>
-                    document.getElementById("wikipage").innerText = "test"
+
+                    function httpGet(theUrl)
+                    {
+                        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                            xmlhttp=new XMLHttpRequest();
+                        }
+                        else {// code for IE6, IE5
+                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange=function() {
+                            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                                return xmlhttp.responseText;
+                            }
+                        }
+                        xmlhttp.open("GET", theUrl, false );
+                        xmlhttp.send();    
+                    }
+
+                    document.getElementById("wikipage").innerText = httpGet("https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/index.md");
                 </script>
             </div>
 		</section>
