@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get wiki files
-      uses: NeusFear/fabric-wiki-copy@0.1.1
+      uses: NeusFear/fabric-wiki-copy@0.1.2
       with:
         branch: master
       id: get
