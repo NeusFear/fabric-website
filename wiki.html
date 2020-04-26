@@ -4,76 +4,76 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>FabricMC</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.css" />
         <link rel="stylesheet" href="css/dividers.css" />
-		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script src="scripts/wiki.js"></script>
 	</head>
 	<body>
 
 
-		<section class="hero is-fullheight is-mobile">
+		<section class="is-mobile">
 
 			<nav class="navbar is-mobile is-marginless heading has-text-weight-bold" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                  <a class="navbar-item" href="/">
-                    <img src="/images/logo.svg" width="48" height="28">FabricMC
-                  </a>
-                  <div class="divider" style="width: 6rem"></div>
-                  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                  </a>
-                </div>
-                <div id="navbarBasicExample" class="navbar-menu is-fullhd">
-                  <div class="navbar-start">
-                    <a class="navbar-item center" href="/">BLOG</a>
-                    <a class="navbar-item center" href="/">DEVELOP</a>
-                    <a class="navbar-item center" href="/">DISCUSS</a>
-                    <a class="navbar-item center" href="/">USE</a>
-                    <a class="navbar-item center" href="/wiki">WIKI</a>
-                  </div>
-                  <div class="navbar-end">
-                    <div class="navbar-item">
-                      <div class="buttons center">
-                        <a class="button is-light heading has-text-weight-bold" href="../">DISCORD</a>
-                      </div>
+                    <a class="navbar-item" href="/">
+                        <img src="/images/logo.svg" width="48" height="28">FabricMC
+                    </a>
+                    <div class="divider" style="width: 6rem"></div>
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
                     </div>
-                  </div>
+                    <div id="navbarBasicExample" class="navbar-menu is-fullhd">
+                        <div class="navbar-start">
+                            <a class="navbar-item center" href="/">BLOG</a>
+                            <a class="navbar-item center" href="/">DEVELOP</a>
+                            <a class="navbar-item center" href="/">DISCUSS</a>
+                            <a class="navbar-item center" href="/">USE</a>
+                            <a class="navbar-item center" href="/wiki">WIKI</a>
+                        </div>
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                            <div class="buttons center">
+                                <a class="button is-light heading has-text-weight-bold" href="../">DISCORD</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </nav>
+            </nav>
 
 		</section>
 
 		<section class="section">
-            <div class="content" id="wikipage">
-                <script>
-
-                    function httpGet(theUrl)
-                    {
-                        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                            xmlhttp=new XMLHttpRequest();
-                        }
-                        else {// code for IE6, IE5
-                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                        }
-                        xmlhttp.onreadystatechange=function() {
-                            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                                return xmlhttp.responseText;
-                            }
-                        }
-                        xmlhttp.open("GET", theUrl, false );
-                        xmlhttp.send();    
-                    }
-
-                    document.getElementById("wikipage").innerText = httpGet("https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/index.md");
-                </script>
+            <div class="columns">
+                <div class="column">
+                    <div class="container is-fluid">
+                        <div class="message is-primary">
+                            <div class="message-header">Wiki Pages</div>
+                            <div class="message-body">
+                                <div class="content" id="wikisidebar">
+                                    Loading...
+                                    <script>getFileStructureFromRepo();</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-two-thirds">
+                    <div class="container is-fluid" id="wikicontent">
+                        Loading...
+                        <script>getMarkdownFrom("https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/index.md");</script>
+                    </div>
+                </div>
+                <div class="column"></div>
             </div>
 		</section>
 
         <div class="is-divider"></div>
 
-        <footer class="section has-background-dark">
+        <footer class="footer has-background-dark">
             <div class="container is-dark">
                 <div class="columns">
                     <div class="column">
