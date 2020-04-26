@@ -70,6 +70,20 @@ function getMarkdownFrom(theUrl) {
     xmlhttp.send();    
 }
 
+function readTextFile() {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", "wiki/wikipages/index.md", false);
+    rawFile.onreadystatechange = function () {
+        if(rawFile.readyState === 4) {
+            if(rawFile.status === 200 || rawFile.status == 0) {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
 function getFileStructureFromRepo() {
     xmlhttp = getXMLType();
     xmlhttp.onreadystatechange=function() {
