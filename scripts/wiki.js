@@ -72,7 +72,7 @@ function getMarkdownFrom(theUrl) {
 
 function readTextFile() {
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "wiki/wikipages/index.md", false);
+    rawFile.open("GET", "./wiki/wikipages/index.md", false);
     rawFile.onreadystatechange = function () {
         if(rawFile.readyState === 4) {
             if(rawFile.status === 200 || rawFile.status == 0) {
