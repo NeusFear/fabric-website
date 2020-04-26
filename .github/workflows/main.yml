@@ -1,0 +1,19 @@
+name: Get Wiki
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: GetWiki
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get wiki files
+      uses: NeusFear/fabric-wiki-copy@0.1.0
+      with:
+        branch: master
+      id: get
+    - name: Echo the time
+      run: echo 'The time was ${{ steps.get.outputs.time }}.'
