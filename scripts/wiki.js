@@ -25,14 +25,13 @@ function getMarkdown(data) {
     var texts = new Array();
 
     for (let i = 0; i < text.length; i++) {
-        console.log(text[i]);
         if (text[i].startsWith("#")) {
             //start a new section
             var section = document.createElement("div");
             section.setAttribute("class", "message is-dark");
             
             var title = document.createElement("div");
-            title.setAttribute("class", "message-header");
+            title.setAttribute("class", "message-header subtitle");
             title.innerText = text[i].substring(1);
 
             section.appendChild(title);
@@ -68,31 +67,80 @@ function getMarkdown(data) {
     updateHTML("wikicontent", parent);
 }
 
-function readTextFile() {
-    fetch("https://neusfear.github.io/fabric-wiki/wikipages/index.md")
+function readTextFile(language, category, page) {
+    console.log(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`);
+    fetch(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`)
     .then(response => response.text())
     .then((data) => {
         getMarkdown(data);
     })
 }
 
-function getFileStructureFromRepo() {
-    xmlhttp = getXMLType();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+function parsePageList(data, category, page) {
+    
+    var parent = document.createElement("article");
+    parent.setAttribute("class", "panel is-primary");
 
-            var jsonResult = JSON.parse(xmlhttp.responseText)
-            var pages = new Array();
+    var title = document.createElement("p");
+    title.setAttribute("class", "panel-heading");
 
-            jsonResult.forEach(element => {
-                if (element.type === "dir") {
-                    pages.push(element.name);
-                }
-            });
+    var titleText = document.createElement("p");
+    titleText.innerHTML = "Pages";
 
-            updateContent("wikisidebar", pages.toString());
+    title.appendChild(titleText);
+
+    parent.appendChild(title);
+
+    var jsonData = JSON.parse(data);
+    for (let i = 0; i < jsonData.categories.length; i++) {
+
+        var section = document.createElement("a");
+        var icon = document.createElement("span");
+        var iconImage = document.createElement("i");
+        icon.setAttribute("class", "panel-icon");
+
+        if (category == jsonData.categories[i].name) {
+            section.setAttribute("class", "panel-block is-capitalized is-active");
+            iconImage.setAttribute("class", "fas fa-angle-down");
+        } else {
+            section.setAttribute("class", "panel-block is-capitalized");
+            iconImage.setAttribute("class", "fas fa-angle-right");
+        }
+
+        var name = document.createElement("p");
+        name.innerHTML = jsonData.categories[i].name;
+
+        icon.appendChild(iconImage);
+        section.appendChild(icon);
+        section.appendChild(name);
+
+        parent.appendChild(section);
+
+        //Add the headers of the category to the list of the active section
+        if (category == jsonData.categories[i].name) {
+            for (let j = 0; j < jsonData.categories[i].pages.length; j++) {
+                var subSection = document.createElement("a");
+                subSection.setAttribute("class", "panel-block is-capitalized");
+                var spacing = document.createElement("div");
+                spacing.setAttribute("class", "divider");
+                spacing.setAttribute("style", "width: 2rem");
+                var subSectionName = document.createElement("p");
+                subSectionName.innerText = jsonData.categories[i].pages[j].replace(new RegExp("_".replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), 'g'), " ");
+
+                subSection.appendChild(spacing);
+                subSection.appendChild(subSectionName);
+                parent.appendChild(subSection);
+            }
         }
     }
-    xmlhttp.open("GET", "https://api.github.com/repos/NeusFear/fabric-wiki/contents/wikipages/", false );
-    xmlhttp.send();  
+
+    updateHTML("wikisidebar", parent);
+}
+
+function setupPagesSidebar(language, category, page) {
+    fetch(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/wiki.json`)
+    .then(response => response.text())
+    .then((data) => {
+        parsePageList(data, category, page);
+    })
 }

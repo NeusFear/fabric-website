@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/dividers.css" />
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
         <script src="scripts/wiki.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
 
@@ -19,7 +20,6 @@
                     <a class="navbar-item" href="/">
                         <img src="/images/brand/logo.png" width="28" height="28">
                     </a>
-                    <div class="divider" style="width: 6rem"></div>
                     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -50,22 +50,13 @@
 		<section class="section">
             <div class="columns">
                 <div class="column">
-                    <div class="container is-fluid">
-                        <div class="message is-primary">
-                            <div class="message-header">Wiki Pages</div>
-                            <div class="message-body">
-                                <div class="content" id="wikisidebar">
-                                    Loading...
-                                    <script>getFileStructureFromRepo();</script>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <article class="panel is-primary"  id="wikisidebar"></article>
+                    <script>setupPagesSidebar("english", "biomes", "creating_a_biome");</script>
                 </div>
                 <div class="column is-two-thirds">
                     <div class="container is-fluid" id="wikicontent">
                         Loading...
-                        <script>readTextFile();</script>
+                        <script>readTextFile("english", "biomes", "creating_a_biome");</script>
                     </div>
                 </div>
                 <div class="column"></div>
