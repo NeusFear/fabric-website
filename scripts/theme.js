@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (isDark()) {
         toggleLook();
+    } else if (!isDark() && !isLight()) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            swapTheme();
+        }
     }
 });
 
 function isDark() {
     return document.cookie.match("theme=dark") != null
+}
+
+function isLight() {
+    return document.cookie.match("theme=light") != null
 }
 
 function swapTheme() {
