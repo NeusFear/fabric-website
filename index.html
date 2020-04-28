@@ -6,13 +6,23 @@
 		<title>FabricMC</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.css" />
         <link rel="stylesheet" href="css/dividers.css" />
+        <link rel="stylesheet" href="css/common.css" />
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
         <script src="scripts/modules.js"></script>
 	</head>
 	<body>
 		<section class="is-mobile">
 			<div module="modules/navbar.html"></div>
-		</section>
+        </section>
+        
+        <section class="hero is-light is-medium">
+            <div class="hero-body">
+                <div class="container center">
+                    <div class="title" style="font-size: 6rem;">FABRIC</div>
+                    <div class="title is-4">A lightweight modding toolchain for Minecraft</div>
+                </div>
+            </div>
+        </section>
 
 		<section class="section">
             <div class="container center">
@@ -23,20 +33,14 @@
                 <div class="columns">
                     <div class="column">
                         <div class="notification">
-                            <h1 class="title is-size-4">Factoid 1</h1>
-                            SOME TEXT GOES HERE!
+                            <h1 class="title is-size-4">Lightweight and Modular</h1>
+                            Fabric's APIs are modular and lightweight. Fabric instances load fast and it makes porting them easier.
                         </div>
                     </div>
                     <div class="column">
                         <div class="notification">
-                            <h1 class="title is-size-4">Factoid 2</h1>
-                            SOME TEXT GOES HERE!
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="notification">
-                            <h1 class="title is-size-4">Factoid 3</h1>
-                            SOME TEXT GOES HERE!
+                            <h1 class="title is-size-4">Fast Updates</h1>
+                            Fabric updates with snapshots and release versions, so mods can update earlier and plan their releases better.
                         </div>
                     </div>
                 </div>
@@ -44,30 +48,281 @@
                 <div class="columns">
                     <div class="column">
                         <div class="notification">
-                            <h1 class="title is-size-4">Factoid 4</h1>
-                            SOME TEXT GOES HERE!
+                            <h1 class="title is-size-4">Community Driven</h1>
+                            Fabric is planned and put together by the community who use it to design APIs that you will like.
                         </div>
                     </div>
                     <div class="column">
                         <div class="notification">
-                            <h1 class="title is-size-4">Factoid 5</h1>
-                            SOME TEXT GOES HERE!
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="notification is-warning">
-                            <h1 class="title is-size-4">Important Factoid</h1>
-                            SOME TEXT GOES HERE!
+                            <h1 class="title is-size-4">Open Source</h1>
+                            Fabric is truly open source, every bit of it; meaning you can use and change it to work however you want it to.
                         </div>
                     </div>
                 </div>
 			</div>
-		</section>
+        </section>
+        
+        <section class="section">
+            <div class="container center">
+                <h1 class="title is-2">Installing Fabric</h1>
+            </div>
+            <br><br><br>
+			<div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric Loader</h1>
+                            <h2 class="subtitle">Fabric loader is the mod loader used to run mods.</h2>
+                            <div class="container center">
+                                <a class="button is-primary is-fullwidth">
+                                    Download the Installer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric API</h1>
+                            <h2 class="subtitle">Most mods depend on Fabric API. A set of commonly used hooks.</h2>
+                            <div class="container center">
+                                <a class="button is-primary is-fullwidth">
+                                    Download API
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </section>
 
-        <div class="is-divider"></div>
+        <section class="section">
+            <div class="container center">
+                <h1 class="title is-2">Repositories</h1>
+            </div>
+            <br><br><br>
+			<div class="container center">
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric API</h1>
+                            Fabric API is our “hook layer”, providing the most common hooks and interoperability required for Fabric mods.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric Loader</h1>
+                            Fabric Loader is our version-independent mod loader, providing mod loading and code patching functionality.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-loader">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric Loom</h1>
+                            Fabric Loom is our Gradle-based build system, used for developing Fabric mods.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-loom">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Yarn</h1>
+                            Yarn providides deobfuscated/friendly names for the most recent versions of the game based on community contributions.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/yarn">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Intermediary</h1>
+                            Intermediary provides stable cross-version names and match information between Minecraft releases.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/intermediary">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric Installer</h1>
+                            A tool for creating Fabric-ready profiles for the official Minecraft launcher.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-installer">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Enigma</h1>
+                            The Fabric project maintains a fork of <a class="link" href="https://www.cuchazinteractive.com/enigma/">Enigma</a>, a tool for deobfuscation of Java classes originally by Cuchaz Interactive.
+                            <div class="container center">
+                                <br>
+                                <div class="columns">
+                                    <div class="column">
+                                        <a class="button is-outlined is-fullwidth is-primary" href="https://github.com/FabricMC/Enigma">
+                                            View Github
+                                        </a>
+                                    </div>
+                                    <div class="column">
+                                        <a class="button is-outlined is-fullwidth is-primary" href="https://maven.fabricmc.net/cuchaz/enigma/">
+                                            Downlaod
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Tiny Remapper</h1>
+                            The tiny-remapper project provides a fast, optimized tool for accurately remapping .JAR files using the Tiny mapping format.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/tiny-remapper">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fernflower</h1>
+                            A modified version of JetBrains’ upstream with line number mapping information exposed.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/intellij-fernflower">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Matcher</h1>
+                            Matcher, sfPlayer1’s tool for tracking elements in obfuscated Java archives across releases used for updating Yarn mappings.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/sfPlayer1/Matcher/">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Stitch</h1>
+                            Stitch is an assortment of small tools providing functionality used by the Fabric project in command-line form.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/stitch">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Weave</h1>
+                            Weave is an earlier iteration of Stitch and is now generally only used to export Enigma-format mappings to Tiny-format files.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/weave">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Mixin</h1>
+                            A fork of <a class="link" href="https://github.com/SpongePowered/Mixin">Mixin</a> is a trait/mixin framework for Java bytecode created by Mumfrey for Sponge.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-language-kotlin">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric language Kotlin</h1>
+                            Fabric language module for the Kotlin Language.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-language-kotlin">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Fabric Language Scala</h1>
+                            Fabric language module for the Scale Language.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/fabric-language-scala">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification center">
+                            <h1 class="title">Tiny Mappings Parser</h1>
+                            A library for processing Tiny-format mapping files.
+                            <div class="container center">
+                                <br>
+                                <a class="button is-outlined is-primary is-fullwidth" href="https://github.com/FabricMC/tiny-mappings-parser">
+                                    View Github
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column"></div>
+                    <div class="column"></div>
+                </div>
+			</div>
+        </section>
 
         <section class="is-mobile">
-			<div module="modules/footer.html"></div>
+			<div module="./modules/footer.html"></div>
 		</section>
 
 	</body>
