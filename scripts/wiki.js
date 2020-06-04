@@ -67,7 +67,7 @@ function getMarkdown(data) {
         for (let k = 0; k < texts[j].length; k++) {
             var textLine; 
 
-            console.log(texts[j][k]);
+            //console.log(texts[j][k]);
 
             //heading sizes
             if (texts[j][k].startsWith("## ")) {
@@ -97,6 +97,15 @@ function getMarkdown(data) {
 
             //tables
             if (texts[j][k].startsWith("|")) {
+
+                if (texts[j][k].startsWith("|-") || texts[j][k].startsWith("|:")) {
+                    if (!tableGroup) {
+                        tableHasHead = false;
+                    }
+                }
+
+                tableGroup = true;
+
                 let tableCurrentLine = texts[j][k].split("|");
                 tableCurrentLine.shift();
                 tableCurrentLine.pop();
