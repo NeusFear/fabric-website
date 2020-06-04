@@ -24,8 +24,9 @@ function getMarkdown(data) {
     var sections = new Array();
     var texts = new Array();
 
+    //Defines sections of the article
     for (let i = 0; i < text.length; i++) {
-        if (text[i].startsWith("#")) {
+        if (text[i].startsWith("# ")) {
             //start a new section
             var section = document.createElement("div");
             section.setAttribute("class", "message is-dark");
@@ -47,16 +48,41 @@ function getMarkdown(data) {
         }
     }
 
+    //Begins parsing the lines of the content of the articles
     for (let j = 0; j < sections.length; j++) {
 
+        //Create the container for article section content
         var body = document.createElement("div");
         body.setAttribute("class", "message-body");
 
+        //Start looping through the lines of the section
         for (let k = 0; k < texts[j].length; k++) {
+            var textLine; 
 
-            var textLine = document.createElement("p");
+            console.log(texts[j][k]);
+
+            //heading sizes
+            if (texts[j][k].startsWith("## ")) {
+                textLine = document.createElement("div");
+                textLine.setAttribute("class", "subtitle is-2");
+                texts[j][k] = texts[j][k].substring(2);
+            } else if (texts[j][k].startsWith("### ")) {
+                textLine = document.createElement("div");
+                textLine.setAttribute("class", "subtitle is-3");
+                texts[j][k] = texts[j][k].substring(3);
+            } else if (texts[j][k].startsWith("#### ")) {
+                textLine = document.createElement("div");
+                textLine.setAttribute("class", "subtitle is-4");
+                texts[j][k] = texts[j][k].substring(4);
+            } else if (texts[j][k].startsWith("##### ")) {
+                textLine = document.createElement("div");
+                textLine.setAttribute("class", "subtitle is-5");
+                texts[j][k] = texts[j][k].substring(5);
+            } else {
+                textLine = document.createElement("p");
+            }
+            
             textLine.innerHTML = texts[j][k];
-
             body.appendChild(textLine);
         }
 
@@ -68,7 +94,7 @@ function getMarkdown(data) {
 }
 
 function readTextFile(language, category, page) {
-    console.log(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`);
+    //console.log(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`);
     fetch(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`)
     .then(response => response.text())
     .then((data) => {
