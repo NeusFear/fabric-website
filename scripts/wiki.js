@@ -55,6 +55,14 @@ function getMarkdown(data) {
         var body = document.createElement("div");
         body.setAttribute("class", "message-body");
 
+        //If true there will be nothing appended to the body at the end of parsing
+        var skipAppend = false;
+
+        //Stores table info and build status
+        var tableGroup = false;
+        var tableHasHead = true;
+        var currentTable = [];
+
         //Start looping through the lines of the section
         for (let k = 0; k < texts[j].length; k++) {
             var textLine; 
@@ -66,24 +74,102 @@ function getMarkdown(data) {
                 textLine = document.createElement("div");
                 textLine.setAttribute("class", "subtitle is-2");
                 texts[j][k] = texts[j][k].substring(2);
+                textLine.innerHTML = texts[j][k];
             } else if (texts[j][k].startsWith("### ")) {
                 textLine = document.createElement("div");
                 textLine.setAttribute("class", "subtitle is-3");
                 texts[j][k] = texts[j][k].substring(3);
+                textLine.innerHTML = texts[j][k];
             } else if (texts[j][k].startsWith("#### ")) {
                 textLine = document.createElement("div");
                 textLine.setAttribute("class", "subtitle is-4");
                 texts[j][k] = texts[j][k].substring(4);
+                textLine.innerHTML = texts[j][k];
             } else if (texts[j][k].startsWith("##### ")) {
                 textLine = document.createElement("div");
                 textLine.setAttribute("class", "subtitle is-5");
                 texts[j][k] = texts[j][k].substring(5);
+                textLine.innerHTML = texts[j][k];
             } else {
                 textLine = document.createElement("p");
+                textLine.innerHTML = texts[j][k];
+            }
+
+            //tables
+            if (texts[j][k].startsWith("|")) {
+                let tableCurrentLine = texts[j][k].split("|");
+                tableCurrentLine.shift();
+                tableCurrentLine.pop();
+                skipAppend = true;
+
+                //Add a row to the table
+                //Sort out alignments
+                if (tableCurrentLine[1].startsWith("-") || tableCurrentLine[1].startsWith(":")) {
+                    for (let sections = 0; sections < tableCurrentLine.length; sections++) {
+                        if (tableCurrentLine[sections].startsWith(":")) {
+                            if (tableCurrentLine[sections].endsWith(":")) {
+                                tableCurrentLine[sections] = "center";
+                            } else {
+                                tableCurrentLine[sections] = "left";
+                            }
+                        }
+                        if (tableCurrentLine[sections].startsWith("-") && tableCurrentLine[sections].endsWith(":")) {
+                            tableCurrentLine[sections] = "right";
+                        }
+                    }
+                    currentTable.unshift(tableCurrentLine);
+                } else {
+                    currentTable.push(tableCurrentLine);
+                }
+
+                //if this is the last line of the table, end it
+                if (!texts[j][k + 1].startsWith("|")) {
+                    //Build the html
+                    textLine = document.createElement("table");
+                    textLine.setAttribute("class", "table is-bordered");
+                    var thead = document.createElement("thead");
+                    var tbody = document.createElement("tbody");
+                    for (let l = 1; l < currentTable.length; l++) {
+
+                        var row = document.createElement("tr");
+                        for (let m = 0; m < currentTable[l].length; m++) {
+                            let cell = document.createElement("td");
+                            cell.style.textAlign = currentTable[0][m];
+                            cell.innerText = currentTable[l][m];
+                            row.appendChild(cell);
+                        }
+                        //Add and style head and body elements of the table
+                        if (tableHasHead && l === 1) {
+                            row.setAttribute("class", "has-background-dark");
+                            row.childNodes.forEach(child => {
+                                child.classList.toggle("has-text-light");
+                            });
+                            thead.appendChild(row);
+                        } else {
+                            tbody.appendChild(row);
+                        }
+                    }
+
+                    //Append the head and body components
+                    if (tableHasHead) {
+                        textLine.appendChild(thead);
+                    }
+                    textLine.appendChild(tbody);
+
+                    //Tell the append bit that the table html is ready to append to the section
+                    tableGroup = false;
+                    skipAppend = false;
+                }
             }
             
-            textLine.innerHTML = texts[j][k];
-            body.appendChild(textLine);
+            //Add the progress to the section content
+            if (!skipAppend) {
+                body.appendChild(textLine);
+
+                //reset table storage
+                currentTable = [];
+                tableHasHead = true;
+            }
         }
 
         sections[j].appendChild(body);
@@ -94,7 +180,6 @@ function getMarkdown(data) {
 }
 
 function readTextFile(language, category, page) {
-    //console.log(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`);
     fetch(`https://raw.githubusercontent.com/NeusFear/fabric-wiki/master/wikipages/${language}/${category}/${page}.md`)
     .then(response => response.text())
     .then((data) => {
