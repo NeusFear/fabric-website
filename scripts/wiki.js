@@ -75,6 +75,9 @@ function getMarkdown(data) {
                 textLine.setAttribute("class", "subtitle is-2");
                 texts[j][k] = texts[j][k].substring(2);
                 textLine.innerHTML = texts[j][k];
+                let brk = document.createElement("div");
+                brk.setAttribute("class", "is-divider");
+                textLine.appendChild(brk);
             } else if (texts[j][k].startsWith("### ")) {
                 textLine = document.createElement("div");
                 textLine.setAttribute("class", "subtitle is-3");
