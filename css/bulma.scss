@@ -1,11 +1,7 @@
 @charset "utf-8";
 
 //Import bulma
-@import "../bulma/bulma";
-
-//Define brand colors
-$beige: #cda584;
-$black-ter: rgb(231, 36, 36);
-
-//Update bulma derrived variables
-$info: $beige;
+@use "../bulma/bulma.sass" with (
+    $black-ter: rgb(231, 36, 36),
+    $cyan: #cda584
+)
