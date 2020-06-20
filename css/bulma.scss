@@ -1,10 +1,10 @@
 @charset "utf-8";
 
+//Import bulma
+@import "../bulma/bulma.sass";
+
 //Define brand colors
 $beige: #cda584;
 
 //Update bulma global variables
 $info: $beige;
-
-//Import bulma
-@import "../bulma/bulma.sass";
