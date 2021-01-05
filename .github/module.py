@@ -20,4 +20,6 @@ def replaceFile(name):
     file.write(text)
     file.close()
     
+    print(text)
+    
 replaceFile('index.html')
