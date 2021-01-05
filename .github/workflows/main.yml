@@ -18,7 +18,14 @@ jobs:
       with:
         source: ./css/bulma.scss
         destination: ./css/bulma.css
-    - name: FTP-Deploy-Action
+    - name: setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8 #install the python needed
+    - name: execute py script # run the run.py to get the latest data
+      run: |
+        python module.py
+    - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
         ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test2
