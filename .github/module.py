@@ -10,7 +10,7 @@ def replaceModules(text):
         match = re.search(regex, text, re.MULTILINE | re.DOTALL)
         if match == None:
             return text
-        text = text[:match.end()] + open(match.group(2), "r") + text[match.end():]
+        text = text[:match.end()] + readFile(match.group(2)) + text[match.end():]
         text = text[:match.start(1)] + text[match.end(1):]
 
 def replaceFile(name):
