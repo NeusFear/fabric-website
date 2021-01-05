@@ -7,3 +7,6 @@ README.md
 bulma/*
 *.sass
 *.scss
+
+*.html
+!index.html
