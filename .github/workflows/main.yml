@@ -26,10 +26,10 @@ jobs:
       run: |
         python .github/module.py
     - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test3
-        ftp-username: ubuntu
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        known-hosts: ${{ secrets.FTP_KNOWN_HOSTS }}
-        git-ftp-args: --all
+        host: 51.222.31.214
+        user: ubuntu
+        password: ${{ secrets.FTP_PASSWORD }}
+        remoteDir: var/www/brandonmdavis.com/test3
+        forceSsl: true
