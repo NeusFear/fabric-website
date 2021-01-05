@@ -22,16 +22,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8 #install the python needed
-    - name: Execute module script 
+    - name: Execute Module Script # run the run.py to get the latest data
       run: |
         python .github/module.py
     - name: Reset index.html
       run: git checkout index.html
-    - name: FTP-Deploy-Action
-      uses: sebastianpopp/ftp-action@releases/v2
+    - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
-        host: 51.222.31.214
-        user: ubuntu
-        password: ${{ secrets.FTP_PASSWORD }}
-        remoteDir: var/www/brandonmdavis.com/test3
-        forceSsl: true
+        ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test3
+        ftp-username: ubuntu
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        known-hosts: ${{ secrets.FTP_KNOWN_HOSTS }}
+        git-ftp-args: --all
