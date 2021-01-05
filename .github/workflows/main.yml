@@ -26,7 +26,7 @@ jobs:
       run: |
         python .github/module.py
     - name: Reset index.html
-      run: git checkout package-lock.json
+      run: git checkout index.html
     - name: FTP-Deploy-Action
       uses: sebastianpopp/ftp-action@releases/v2
       with:
