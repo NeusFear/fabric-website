@@ -18,16 +18,16 @@ jobs:
       with:
         source: ./css/bulma.scss
         destination: ./css/bulma.css
-    - name: setup python
+    - name: Setup Python
       uses: actions/setup-python@v2
       with:
         python-version: 3.8 #install the python needed
-    - name: execute py script # run the run.py to get the latest data
+    - name: Execute module script 
       run: |
         python .github/module.py
-    - name: git status
-      run: git status -uno --porcelain
-    - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
+    - name: Reset index.html
+      run: git checkout package-lock.json
+    - name: FTP-Deploy-Action
       uses: sebastianpopp/ftp-action@releases/v2
       with:
         host: 51.222.31.214
