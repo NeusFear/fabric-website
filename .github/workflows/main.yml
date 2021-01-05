@@ -25,13 +25,10 @@ jobs:
     - name: Execute Module Script # run the run.py to get the latest data
       run: |
         python .github/module.py
-    - name: Reset index.html
-      run: git checkout index.html
-    - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+    - name: SSH-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
+      uses: easingthemes/ssh-deploy@v2.1.5
       with:
-        ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test3
-        ftp-username: ubuntu
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        known-hosts: ${{ secrets.FTP_KNOWN_HOSTS }}
-        git-ftp-args: --all
+        REMOTE_HOST: 51.222.31.214
+        REMOTE_USER: ubuntu
+        SSH_PRIVATE_KEY: ${{ secrets.FTP_PASSWORD }}
+        TARGET: /var/www/brandonmdavis.com/test3
