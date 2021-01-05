@@ -28,7 +28,7 @@ jobs:
     - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
-        ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test2
+        ftp-server: sftp://51.222.31.214/var/www/brandonmdavis.com/test3
         ftp-username: ubuntu
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         known-hosts: ${{ secrets.FTP_KNOWN_HOSTS }}
