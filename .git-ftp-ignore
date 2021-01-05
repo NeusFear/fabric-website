@@ -8,5 +8,4 @@ bulma/*
 *.sass
 *.scss
 
-*.html
-!index.html
+modules/*
