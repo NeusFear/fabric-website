@@ -25,6 +25,8 @@ jobs:
     - name: execute py script # run the run.py to get the latest data
       run: |
         python .github/module.py
+    - name: git status
+      run: git status -uno --porcelain
     - name: FTP-Deploy-Action #TODO: make ftp ignore the moduels now they get put into one file
       uses: sebastianpopp/ftp-action@releases/v2
       with:
